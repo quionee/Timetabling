@@ -1,0 +1,16 @@
+n_quantidades_de_dias_disponiveis
+dia_1 hora_inicial_1 hora_final_1
+...
+dia_n hora_inicial_n hora_final_n
+m_quantidades_de_horarios_ocupados
+id_horario_ocupado_1 hora_inicial_1 hora_final_1 dia_ocupado
+...
+id_horario_ocupado_m hora_inicial_m hora_final_m dia_ocupado
+p_quantidades_de_atividades
+nome_atividade_1 carga_horaria_semanal qtd_dias_possiveis dia_possivel_1 dia_possivel_2 carga_horaria_consecutiva
+...
+nome_atividade_p carga_horaria_semanal qtd_dias_possiveis dia_possivel_1 dia_possivel_2 carga_horaria_consecutiva
+r_quantidades_de_refeicoes
+id_refeicao_1 limite_inferior_1 limite_superior_1 duracao
+...
+id_refeicao_r limite_inferior_r limite_superior_r duracao
