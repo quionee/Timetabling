@@ -1,7 +1,11 @@
+ # -*- coding: utf-8 -*-
+
 import sys
+from openpyxl import Workbook
 
 from task import Task
 from meal import Meal
+from heuristic import Heuristic
 
 def createInvervalsForDays(availablePeriods):
     availableIntervals = {}
@@ -66,7 +70,6 @@ def createBusyIntervals(busyPeriods):
     return busyIntervals
 
 
-
 def setBusyIntervals(availableIntervals, busyIntervals):
     for day in busyIntervals.keys():
         for interval in busyIntervals[day].keys():
@@ -128,7 +131,7 @@ def createDataStructure(lines):
             interval = line[int(line[2]) + 6].split(':')
             busyIntervalThatTheTaskMustBeDoneBefore = (line[int(line[2]) + 5], (int(interval[0]), int(interval[1])))
 
-        tasks[line[0]] = Task(line[0], line[1], daysItMustBeDone, line[int(line[2]) + 3],
+        tasks[line[0]] = Task(line[0], int(line[1]) * 4, daysItMustBeDone, int(line[int(line[2]) + 3]) * 4,
                               itMustBeDoneBeforeBusyInterval, busyIntervalThatTheTaskMustBeDoneBefore)
         iterator += 1
 
@@ -169,7 +172,24 @@ def main():
 
     intervals, busyIntervals, tasks, meals = createDataStructure(lines)
 
-    printData(intervals, busyIntervals, tasks, meals)
+    # printData(intervals, busyIntervals, tasks, meals)
+
+    heuristic = Heuristic(intervals, busyIntervals, tasks, meals)
+    heuristic.heuristic()
+
+    # printData(intervals, busyIntervals, heuristic.tasks, meals)
+
+    # arquivo_excel = Workbook()
+    # planilha1 = arquivo_excel.active
+    # planilha1.title = "Gastos"
+
+    # planilha1['A1'] = 'Categoria'
+    # planilha1['B1'] = 'Valor'
+    # planilha1['A2'] = "Restaurante"
+    # planilha1['B2'] = 45.99
+
+    # planilha1.cell(row=3, column=1, value=34.99)
+    # arquivo_excel.save("relatorio.xlsx")
 
 
 if __name__ == "__main__":
