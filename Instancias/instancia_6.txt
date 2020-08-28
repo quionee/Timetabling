@@ -1,0 +1,18 @@
+5
+segunda 09:00 20:00
+terça 09:00 18:00
+quarta 09:00 18:30
+quinta 09:00 19:00
+sexta 09:00 20:00
+2
+terça 1 14:00 16:00
+quarta 1 14:00 16:00
+2
+Estudar 30 5 segunda terça quarta quinta sexta 3
+3
+1 08:00 09:00 30
+2 11:30 12:30 45
+3 19:00 21:00 90
+
+
+

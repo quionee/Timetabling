@@ -1,0 +1,11 @@
+5
+segunda 08:00 16:00
+terça 08:00 16:00
+quarta 08:00 16:00
+quinta 08:00 16:00
+sexta 08:00 16:00
+0
+2
+Trabalho 30 5 segunda terça quarta quinta sexta 6
+3
+1 12:00 14:00 120
