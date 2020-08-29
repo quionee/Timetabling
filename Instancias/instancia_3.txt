@@ -1,0 +1,16 @@
+5
+segunda 11:00 18:30
+terça 11:00 18:30
+quarta 11:00 18:30
+quinta 11:00 18:30
+sexta 11:00 18:30
+0
+1
+Estudos 38 5 segunda terça quarta quinta sexta 2
+3
+1 08:00 09:00 30
+2 12:30 13:30 60
+3 19:00 20:30 60
+
+
+
