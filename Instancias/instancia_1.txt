@@ -2,7 +2,7 @@
 segunda 07:00 20:30
 terça 07:00 20:00
 quarta 07:00 20:00
-quinta 07:00 20:00
+quinta 07:00 21:00
 sexta 07:00 20:00
 5
 segunda 1 10:30 11:00
@@ -19,9 +19,9 @@ Estudar_Redes 4 1 quarta 2 -1
 Estudar_IHC 4 1 quinta 2 -1
 Estudar_Empreendedorismo 2 1 sexta 2 -1
 3
-Refeicao_1 07:00 09:00 30
-Refeicao_2 11:00 13:00 60
-Refeicao_3 19:00 20:00 30
+Refeição_1 07:00 09:00 30
+Refeição_2 11:00 13:00 60
+Refeição_3 19:00 20:00 30
 
 
 

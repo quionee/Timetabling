@@ -2,6 +2,9 @@
 
 import sys
 from openpyxl import Workbook
+from openpyxl.styles import Alignment
+from openpyxl.utils import get_column_letter
+from openpyxl.styles import Font
 
 from task import Task
 from meal import Meal
@@ -88,10 +91,6 @@ def createDataStructure(lines):
     
     availableIntervals = createInvervalsForDays(availablePeriods)
 
-    print('\n\n---------- Available Intervals ----------\n')
-    for day in availableIntervals.keys():
-        print(day, ':', availableIntervals[day], '\n')
-
     numberOfBusyPeriods = int(lines[iterator])
     iterator += 1
     busyPeriods = {}
@@ -165,6 +164,81 @@ def printData(intervals, busyIntervals, tasks, meals):
         print(meal, ':', meals[meal].possibleIntervals, meals[meal].duration)
 
 
+def isNumber(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
+
+def generateSpreasheet(intervals):
+    xlsxFile = Workbook()
+    spreadsheet = xlsxFile.active
+    spreadsheet.title = "Agenda"
+
+    row = 1
+    column = 2
+    for day in intervals.keys():
+        spreadsheet.cell(row, column, day.upper())
+        spreadsheet.cell(row, column).font = Font(bold=True)
+        currentCell = spreadsheet.cell(row, column)
+        currentCell.alignment = Alignment(horizontal='center')
+        row1 = 2
+        column1 = 1
+        
+        for interval in intervals[day].keys():
+            hour = interval[0]
+            minute = interval[1]
+            if (minute == 0):
+                minute = str(minute) + '0'
+            if (hour < 10):
+                hour = '0' + str(interval[0])
+            
+            spreadsheet.cell(row1, column1, str(hour) + ":" + str(minute))
+            spreadsheet.cell(row1, column1).font = Font(bold=True)
+            currentCell = spreadsheet.cell(row1, column1)
+            currentCell.alignment = Alignment(horizontal='center')
+
+            task = str(intervals[day][interval]).split('_')
+            if (len(task) > 1):
+                task1 = task
+                task = ''
+                for i in task1:
+                    task += i + ' '
+            else:
+                task = task[0]
+
+            if isNumber(task):
+                if (task == '0'):
+                    task = '-'
+                else:
+                    task = 'Horário ocupado ' + task
+
+            spreadsheet.cell(row1, column, task)
+            currentCell = spreadsheet.cell(row1, column)
+            currentCell.alignment = Alignment(horizontal='center')
+            
+            row1 += 1
+
+        column += 1
+    
+    for col in spreadsheet.columns:
+        max_length = 0
+        column = col[0].column_letter
+        for cell in col:
+            try:
+                if len(str(cell.value)) > max_length:
+                    max_length = len(cell.value)
+            except:
+                pass
+
+        adjusted_width = (max_length + 2) * 1
+        spreadsheet.column_dimensions[column].width = adjusted_width
+
+    xlsxFile.save("agenda.xlsx")
+
+
 def main():
     fileName = ''.join(sys.argv[1:])
     file = open(fileName, "r")
@@ -172,24 +246,10 @@ def main():
 
     intervals, busyIntervals, tasks, meals = createDataStructure(lines)
 
-    # printData(intervals, busyIntervals, tasks, meals)
-
     heuristic = Heuristic(intervals, busyIntervals, tasks, meals)
     heuristic.heuristic()
 
-    # printData(intervals, busyIntervals, heuristic.tasks, meals)
-
-    # arquivo_excel = Workbook()
-    # planilha1 = arquivo_excel.active
-    # planilha1.title = "Gastos"
-
-    # planilha1['A1'] = 'Categoria'
-    # planilha1['B1'] = 'Valor'
-    # planilha1['A2'] = "Restaurante"
-    # planilha1['B2'] = 45.99
-
-    # planilha1.cell(row=3, column=1, value=34.99)
-    # arquivo_excel.save("relatorio.xlsx")
+    generateSpreasheet(heuristic.intervals)
 
 
 if __name__ == "__main__":

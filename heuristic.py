@@ -8,24 +8,8 @@ class Heuristic:
 
 
     def heuristic(self):
-        # 1. Definir os invervalos possíveis para os dias OK
-        # 2. Preencher os horários ocupados OK
-        # 3. Alocar os horários de refeição a partir dos primeiros intervalos
-        #    livres (dentro do escopo possível para refeições). OK
-        # 4. Ordenar de forma descrescente as atividades por quantidade de dias que ela DEVE ser realizada. OK
-        # 5. Para todas as atividades a serem alocadas, fazer:
-        #     (a) Se atividade tem dias específicos para ser realizada, para cada dia (aleatoriamente)
-        #         possível pela atividade, fazer:
-        #         i. Alocar a carga horária mínima consecutiva a partir do primeiro intervalo livre do dia.
-        #     (b) Se a carga horária total da atividade dividida pela quantidades de dias em que ela pode
-        #         ser alocada for maior que a carga horária mínima consecutiva, repetir passo (a).
-
         self.assignMeals()
         self.sortTasks()
-
-        print('\n\n\n---------- Intervals considering Busy Intervals ----------\n')
-        for day in self.intervals.keys():
-            print(day, ':', self.intervals[day], '\n')
 
         for task in self.tasks.keys():
             if (self.tasks[task].daysItMustBeDone != []):
@@ -108,29 +92,3 @@ class Heuristic:
             del tasks[(numberMaxTask[0], numberMaxTask[1])]
 
         self.tasks = sortedTasks
-
-
-
-
-
-
-
-
-
-
-    # def test(self):
-    #     print('\n\n---------- Busy Intervals ----------\n')
-    #     for day in self.busyIntervals.keys():
-    #         print(day, ':', self.busyIntervals[day])
-
-    #     print('\n\n\n---------- Intervals considering Busy Intervals ----------\n')
-    #     for day in self.intervals.keys():
-    #         print(day, ':', self.intervals[day], '\n')
-
-    #     print('\n\n---------- Tasks ----------\n')
-    #     for task in self.tasks.keys():
-    #         print(self.tasks[task].name, ':', self.tasks[task].workload, self.tasks[task].daysItMustBeDone, self.tasks[task].consecutiveMinimumWorkload, self.tasks[task].itMustBeDoneBeforeBusyInterval, self.tasks[task].busyIntervalThatTheTaskMustBeDoneBefore)
-
-    #     print('\n\n\n---------- Meals ----------\n')
-    #     for meal in self.meals.keys():
-    #         print(meal, ':', self.meals[meal].possibleIntervals, self.meals[meal].duration)
