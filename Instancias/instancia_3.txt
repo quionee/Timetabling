@@ -8,9 +8,9 @@ sexta 11:00 18:30
 1
 Estudos 38 5 segunda terça quarta quinta sexta 2
 3
-1 08:00 09:00 30
-2 12:30 13:30 60
-3 19:00 20:30 60
+Refeição_1 08:00 09:00 30
+Refeição_2 12:30 13:30 60
+Refeição_3 19:00 20:30 60
 
 
 

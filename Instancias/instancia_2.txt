@@ -16,9 +16,9 @@ sexta 2 08:00 12:00 13:00 15:00
 Trabalho 30 5 segunda terça quarta quinta sexta 4
 Aulas_online 5 2 terça quinta 2 
 3
-1 08:00 09:00 30
-2 12:30 13:30 30
-3 18:00 19:00 30
+Refeição_1 08:00 09:00 30
+Refeição_2 12:30 13:30 30
+Refeição_3 18:00 19:00 30
 
 
 
