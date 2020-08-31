@@ -18,8 +18,6 @@ Encontrar uma designinação de atividades durante a semana que maximize o tempo
 * As tarefas não podem ser alocadas nos horários ocupados;
 * Algumas tarefas devem ser alocadas antes de um determinado horário ocupado;
 * As tarefas têm carga horária mínima consecutiva;
-* Dar preferência ao horário de saída com menor fluxo de pessoas (para atividades como supermercado, farmácia, etc.);
-* Deve existir intervalos entre atividades (15 ou 30 minutos);
 * Os horários disponíveis para refeições deve ser respeitado.
 
 ### Execução
