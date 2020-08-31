@@ -1,6 +1,7 @@
  # -*- coding: utf-8 -*-
 
 import sys
+import time
 from openpyxl import Workbook
 from openpyxl.styles import Alignment
 from openpyxl.utils import get_column_letter
@@ -248,12 +249,20 @@ def main():
 
     printData(intervals, busyIntervals, tasks, meals)
 
+    startTime = time.time()
+
     heuristic = Heuristic(intervals, busyIntervals, tasks, meals)
     heuristic.heuristic()
+    
+    endTime = time.time()
 
     generateSpreasheet(heuristic.intervals)
 
     printData(heuristic.intervals, heuristic.busyIntervals, heuristic.tasks, heuristic.meals)
+
+    print('\n\nTempo de Execução: ', endTime - startTime, 'segundos')
+
+    print('\n\nFunção Objetivo: ', heuristic.objectiveFunction())
 
 
 if __name__ == "__main__":

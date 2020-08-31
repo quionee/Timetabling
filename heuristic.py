@@ -100,3 +100,20 @@ class Heuristic:
             del tasks[(numberMaxTask[0], numberMaxTask[1])]
 
         self.tasks = sortedTasks
+
+    def isNumber(self, n):
+        try:
+            int(n)
+            return True
+        except ValueError:
+            return False
+
+
+    def objectiveFunction(self):
+        value = 0
+        for day in self.intervals.keys():
+            for interval in self.intervals[day].keys():
+                if (not self.isNumber(self.intervals[day][interval])):
+                    value += 1
+        
+        return value
