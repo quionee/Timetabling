@@ -21,3 +21,11 @@ Encontrar uma designinação de atividades durante a semana que maximize o tempo
 * Dar preferência ao horário de saída com menor fluxo de pessoas (para atividades como supermercado, farmácia, etc.);
 * Deve existir intervalos entre atividades (15 ou 30 minutos);
 * Os horários disponíveis para refeições deve ser respeitado.
+
+### Execução
+
+```
+pip3 install openpyxl (apenas apra gerar agenda)
+python3 main.py Instancias/instancia_1.txt (executa a heurística)
+python3 model.py Instancias/instancia_2.txt (executa o modelo)
+```
