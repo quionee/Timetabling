@@ -1,25 +1,23 @@
 7
-segunda 06:30 00:00
-terça 06:30 00:00
-quarta 06:30 00:00
-quinta 06:30 00:00
-sexta 06:30 00:00
-sabado 09:30 00:00
-domingo 09:30 00:00
-5
-segunda 2 08:00 11:00 13:00 16:00
-terça 2 08:00 11:00 13:00 16:00
-quarta 2 08:00 11:00 13:00 16:00
-quinta 2 08:00 11:00 13:00 16:00
-sexta 2 08:00 11:00 13:00 16:00
+segunda 08:00 21:00
+terça 08:00 21:00
+quarta 08:00 21:00
+quinta 08:00 22:00
+sexta 08:00 22:00
+sabado 08:00 22:00
+domingo 08:00 21:00
+4
+segunda 2 10:00 11:00 15:00 15:30
+quarta 2 10:00 11:00 15:00 15:30
+sabado 1 13:00 18:00
+domingo 1 13:00 18:00
 2
-Estudar 30 5 segunda terça quarta quinta sexta 6
-5
-1 07:00 07:00 30
-2 10:00 10:00 10
-3 12:00 12:00 60
-4 15:00 15:00 10
-5 19:00 19:00 60
+Trabalho 30 5 segunda terça quarta quinta sexta 4 -1
+Aulas_online 6 2 terça quinta 1 -1
+3
+Refeição_1 08:00 09:00 30
+Refeição_2 12:30 13:30 30
+Refeição_3 18:00 19:00 30
 
 
 

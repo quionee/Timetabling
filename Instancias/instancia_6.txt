@@ -1,18 +1,23 @@
+7
+segunda 06:30 24:00
+terça 06:30 24:00
+quarta 06:30 24:00
+quinta 06:30 24:00
+sexta 06:30 24:00
+sabado 06:30 24:00
+domingo 06:30 24:00
 5
-segunda 09:00 20:00
-terça 09:00 18:00
-quarta 09:00 18:30
-quinta 09:00 19:00
-sexta 09:00 20:00
-2
-terça 1 14:00 16:00
-quarta 1 14:00 16:00
-2
-Estudar 30 5 segunda terça quarta quinta sexta 3
+segunda 2 08:00 11:00 13:00 16:00
+terça 2 08:00 11:00 13:00 16:00
+quarta 2 08:00 11:00 13:00 16:00
+quinta 2 08:00 11:00 13:00 16:00
+sexta 2 08:00 11:00 13:00 16:00
+1
+Estudar 30 5 segunda terça quarta quinta sexta 2 -1
 3
-1 08:00 09:00 30
-2 11:30 12:30 45
-3 19:00 21:00 90
+Refeição_1 07:00 08:00 30
+Refeição_2 12:00 13:00 60
+Refeição_3 19:00 20:00 60
 
 
 

@@ -140,7 +140,7 @@ def createDataStructure(lines):
     while iterator <= (numberOfAvailablePeriods + numberOfBusyPeriods + numberOfTasks + numberOfMeals + 3):
         line = lines[iterator].strip('\n').split(' ')
 
-        meals[line[0]] = Meal(line[1], line[2], line[3])
+        meals[line[0]] = Meal(line[0], line[1], line[2], line[3])
         iterator += 1
     
     return intervals, busyIntervals, tasks, meals
@@ -157,7 +157,7 @@ def printData(intervals, busyIntervals, tasks, meals):
 
     print('\n\n---------- Tasks ----------\n')
     for task in tasks.keys():
-        print(tasks[task].name, ':', tasks[task].workload, tasks[task].daysItMustBeDone, tasks[task].consecutiveMinimumWorkload, tasks[task].itMustBeDoneBeforeBusyInterval, tasks[task].busyIntervalThatTheTaskMustBeDoneBefore)
+        print(tasks[task].name, ':', tasks[task].workload, tasks[task].totalWorkload, tasks[task].daysItMustBeDone, tasks[task].consecutiveMinimumWorkload, tasks[task].itMustBeDoneBeforeBusyInterval, tasks[task].busyIntervalThatTheTaskMustBeDoneBefore)
 
     print('\n\n\n---------- Meals ----------\n')
     for meal in meals.keys():
@@ -246,10 +246,14 @@ def main():
 
     intervals, busyIntervals, tasks, meals = createDataStructure(lines)
 
+    printData(intervals, busyIntervals, tasks, meals)
+
     heuristic = Heuristic(intervals, busyIntervals, tasks, meals)
     heuristic.heuristic()
 
     generateSpreasheet(heuristic.intervals)
+
+    printData(heuristic.intervals, heuristic.busyIntervals, heuristic.tasks, heuristic.meals)
 
 
 if __name__ == "__main__":

@@ -143,12 +143,13 @@ def readFile(lines):
     N = {}
     m = {}
     h = {}
+
     for task in tasks.keys():
         if (tasks[task].busyIntervalThatTheTaskMustBeDoneBefore != 0):
             N[task] = None
             m[task] = U[tasks[task].busyIntervalThatTheTaskMustBeDoneBefore[0]][(tasks[task].busyIntervalThatTheTaskMustBeDoneBefore[1][0], tasks[task].busyIntervalThatTheTaskMustBeDoneBefore[1][1])]
             h[task] = D[tasks[task].busyIntervalThatTheTaskMustBeDoneBefore[0]]
-   
+
     R = {}
     t = {}
     y = {}
@@ -164,7 +165,7 @@ def readFile(lines):
         t[line[0]] = {}
         y[line[0]] = {}
 
-        meals[line[0]] = Meal(line[1], line[2], line[3])
+        meals[line[0]] = Meal(line[0], line[1], line[2], line[3])
 
         for day in U.keys():
             startInterval = meals[line[0]].possibleIntervals[0]
@@ -201,36 +202,37 @@ def getVariables(model, L, U, D):
 
 
 def setConstraints(model, x, D, I, L, c, A, R, t, y, E, O, b, U, N, h, m, daysId):
-    # Restrição (2)
+    # Restrição (2) OK
     for day in D.keys():
-        model.addConstr(quicksum(x[day][I[day][interval]][task] for interval in I[day].keys() for task in L.keys()) == 1)
+        for interval in I[day].keys():
+            model.addConstr(quicksum(x[day][I[day][interval]][task] for task in L.keys()) <= 1)
 
-    # Restrição (3)
+    # Restrição (3) OK
     for task in A.keys():
         model.addConstr(quicksum(x[day][interval][task] for day in D.keys() for interval in I[day].values()) == c[task])
-
+    
     # Restrição (4)
     for task in A.keys():
-        model.addConstr(quicksum(x[day][interval + n][task] for day in D.keys() for interval in range(1, len(U[day]) - b[task]) for n in range(1, b[task])) >= b[task])
+        for day in E[task]:
+            model.addConstr(quicksum(x[day][interval][task] for interval in U[day].values()) >= b[task])
 
     # Restrição (5)
     for task in N.keys():
-        model.addConstr((c[task] - quicksum(x[daysId[day]][interval][task] for interval in I[day].values() for day in range(1, h[task] - 1)) - quicksum(x[daysId[h[task]]][interval][task] for interval in range(1, m[task] - 1))) == 0)
+        model.addConstr((c[task] - quicksum(x[daysId[day]][interval][task] for day in range(1, h[task]) for interval in I[day].values()) - quicksum(x[daysId[h[task]]][interval][task] for interval in range(1, m[task]))) == 0)
 
-    # Restrição (6)
+    # Restrição (6) OK
     for day in D.keys():
         for meal in R.keys():
-            model.addConstr(quicksum(x[day][interval][meal] for interval in range(t[meal][day], y[meal][day])) == R[meal])
+            model.addConstr(quicksum(x[day][interval][meal] for interval in range(t[meal][day], y[meal][day] + 1)) == R[meal])
 
-    # Restrição (7)
+    # Restrição (7) OK
     for task in A.keys():
         for day in E[task]:
             model.addConstr(quicksum(x[day][interval][task] for interval in I[day].values()) >= 1)
 
     # Restrição (8)
-    for day in D.keys():
-        for task in L.keys():
-            model.addConstr(quicksum(x[day][interval][task] for interval in O[day].values()) == 0)
+    for day in O.keys():
+        model.addConstr(quicksum(x[day][U[day][interval]][task] for interval in O[day].keys() for task in L.keys()) == 0, name='qwertyuiokjhgfdsdfhjgfdertyjk,mnb')
 
 
 def main():
@@ -244,17 +246,18 @@ def main():
 
     x = getVariables(model, L, U, D)
 
-    model.setObjective(quicksum(x[day][I[day][interval]][task] for task in L.keys() for day in D.keys() for interval in I[day].keys()), GRB.MINIMIZE)
+    model.setObjective(quicksum(x[day][interval][task] for task in L.keys() for day in D.keys() for interval in I[day].values()), GRB.MINIMIZE)
 
     setConstraints(model, x, D, I, L, c, A, R, t, y, E, O, b, U, N, h, m, daysId)
-
+    
+    model.write("saida-modelo.lp")
+    
     model.optimize()
 
-    for day in D.keys():
-        for interval in U[day].values():
-            for task in L.keys():
-                if (model.status == GRB.Status.OPTIMAL):
-                    model.printAttr('x_' + str(day) + '_' + str(interval) + '_' + str(task))
+    vars = model.getVars()
+
+    for var in vars:
+        print(var)
 
 
 if __name__ == "__main__":

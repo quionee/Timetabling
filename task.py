@@ -9,7 +9,3 @@ class Task:
         self.consecutiveMinimumWorkload = consecutiveMinimumWorkload
         self.itMustBeDoneBeforeBusyInterval = itMustBeDoneBeforeBusyInterval
         self.busyIntervalThatTheTaskMustBeDoneBefore = busyIntervalThatTheTaskMustBeDoneBefore
-
-
-    def checkConsecutiveMinimumWorkload():
-        print('yeah')

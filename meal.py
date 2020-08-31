@@ -1,6 +1,7 @@
 class Meal:
 
-    def __init__(self, startTimeLimit, endTimeLimit, duration):
+    def __init__(self, name, startTimeLimit, endTimeLimit, duration):
+        self.name = name
         self.possibleIntervals = self.createPossibleIntervals(startTimeLimit, endTimeLimit)
         self.duration = int(int(duration) / 15)
 
@@ -14,12 +15,13 @@ class Meal:
         hour = int(startTimeLimit[0])
         minute = int(startTimeLimit[1])
         
+        # iterator = 0
         while hour < int(endTimeLimit[0]):
-            iterator = 0
+            # iterator = 0
             while minute < 60:
                 possibleIntervals.append((hour, minute))
                 minute += interval
-                iterator += 1
+                # iterator += 1
 
             if (minute > 60):
                 minute = 15
@@ -28,15 +30,11 @@ class Meal:
 
             hour += 1
 
-            iterator = 0
+            # iterator = 0
 
         while minute < int(endTimeLimit[1]):
             possibleIntervals.append((hour, minute))
             minute += interval
-            iterator += 1
+            # iterator += 1
 
         return possibleIntervals
-    
-
-    # def itsWhithinTheScope(self):
-

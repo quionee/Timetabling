@@ -1,9 +1,9 @@
 5
 segunda 07:00 20:30
-terça 07:00 20:00
-quarta 07:00 20:00
+terça 07:00 20:30
+quarta 07:00 20:30
 quinta 07:00 21:00
-sexta 07:00 20:00
+sexta 07:00 20:30
 5
 segunda 1 10:30 11:00
 terça 2 10:30 11:00 17:00 18:00
@@ -11,7 +11,7 @@ quarta 1 10:30 11:00
 quinta 1 10:30 11:00 
 sexta 2 10:30 11:00 13:00 14:00
 7
-Supermercado 3 0 3 1 quarta 19:00
+Supermercado 2 0 2 1 quarta 19:00
 Estudar_Compiladores 4 1 segunda 2 -1
 Estudar_CPA 4 1 terça 2 -1
 IC 20 5 segunda terça quarta quinta sexta 4 -1
@@ -21,7 +21,7 @@ Estudar_Empreendedorismo 2 1 sexta 2 -1
 3
 Refeição_1 07:00 09:00 30
 Refeição_2 11:00 13:00 60
-Refeição_3 19:00 20:00 30
+Refeição_3 19:00 20:30 30
 
 
 
