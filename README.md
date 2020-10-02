@@ -27,3 +27,5 @@ pip3 install openpyxl (apenas apra gerar agenda)
 python3 main.py Instancias/instancia_1.txt (executa a heurística)
 python3 model.py Instancias/instancia_2.txt (executa o modelo)
 ```
+
+### [Relatório e Modelo](https://drive.google.com/file/d/1bRkhKKpwPliild8RsDrgolwjNAxXPJvx/view?usp=sharing)
